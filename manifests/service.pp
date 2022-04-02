@@ -1,8 +1,11 @@
-# @summary A short summary of the purpose of this class
+# @summary Mange crowdsec service
 #
-# A description of what this class does
-#
-# @example
-#   include crowdsec::service
+# @private
 class crowdsec::service {
+
+  $service_ensure = pick($::crowdsec::service_ensure, $::crowdsec::ensure)
+
+  service { 'crowdsec':
+    ensure => $service_ensure,
+  }
 }
